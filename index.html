@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 문자 인코딩 설정 -->
+    <meta charset="UTF-8">
+    <!-- 반응형 뷰포트 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 페이지 제목 -->
+    <title>서울중앙병원 - 월간 소식지</title>
+    <!-- 메타 설명 -->
+    <meta name="description" content="서울중앙병원의 최신 소식과 건강 정보를 전해드립니다.">
+    <!-- Open Graph 메타 태그 -->
+    <meta property="og:title" content="서울중앙병원 월간 소식지">
+    <meta property="og:description" content="안녕하세요, 환자 여러분! 따뜻한 봄을 맞이하며 건강한 소식을 전해드립니다. 이번 달 소식지에서는 새로운 건강검진 프로그램과 봄철 건강관리 팁을 소개해 드립니다.">
+    <meta property="og:type" content="website">
+    <!-- 병원별 브랜드 컬러 CSS 변수 -->
+    <style>
+        :root {
+            --tci-primary-color: #1a73e8;
+            --tci-secondary-color: #34a853;
+            --tci-primary-light: #1a73e820;
+        }
+    </style>
+    <!-- 인라인 스타일 (정적 배포용) -->
+    <style>
+        /* 기본 리셋 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* 폰트 설정 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        /* 컨테이너 */
+        .tci-newsletter {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 100vh;
+        }
+        
+        /* 헤더 */
+        .tci-newsletter-header {
+            background: linear-gradient(135deg, var(--tci-primary-color), var(--tci-secondary-color));
+            color: #fff;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        
+        .tci-hospital-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .tci-hospital-logo img {
+            max-width: 60px;
+            max-height: 60px;
+        }
+        
+        .tci-logo-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--tci-primary-color);
+        }
+        
+        .tci-hospital-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .tci-newsletter-title {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .tci-newsletter-month {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+        
+        /* 인사말 섹션 */
+        .tci-intro-section {
+            padding: 24px 20px;
+            background: var(--tci-primary-light);
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tci-intro-title {
+            font-size: 18px;
+            color: var(--tci-primary-color);
+            margin-bottom: 12px;
+        }
+        
+        .tci-intro-text {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        /* 기사 목록 */
+        .tci-articles {
+            padding: 20px;
+        }
+        
+        .tci-articles-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--tci-primary-color);
+        }
+        
+        /* 기사 카드 */
+        .tci-article-card {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .tci-article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        .tci-article-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .tci-article-content {
+            padding: 16px;
+        }
+        
+        .tci-article-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .tci-article-excerpt {
+            font-size: 14px;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* 병원 정보 섹션 */
+        .tci-hospital-info {
+            padding: 24px 20px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+        
+        .tci-info-title {
+            font-size: 16px;
+            color: var(--tci-primary-color);
+            margin-bottom: 16px;
+        }
+        
+        .tci-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .tci-info-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            color: var(--tci-primary-color);
+        }
+        
+        .tci-info-text {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .tci-info-text a {
+            color: var(--tci-primary-color);
+            text-decoration: none;
+        }
+        
+        /* 푸터 */
+        .tci-newsletter-footer {
+            padding: 20px;
+            text-align: center;
+            background: #333;
+            color: #fff;
+        }
+        
+        .tci-footer-text {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        /* 빈 상태 */
+        .tci-empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: #999;
+        }
+        
+        .tci-empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 소식지 컨테이너 -->
+    <div class="tci-newsletter">
+        <!-- 헤더 -->
+        <header class="tci-newsletter-header">
+            <!-- 병원 로고 -->
+            <div class="tci-hospital-logo">
+                
+                <span class="tci-logo-text">서</span>
+                
+            </div>
+            <!-- 병원명 -->
+            <h1 class="tci-hospital-name">서울중앙병원</h1>
+            <!-- 소식지 제목 -->
+            
+            <p class="tci-newsletter-title">2026년 2월 월간 소식지</p>
+            <p class="tci-newsletter-month">2026-02</p>
+            
+        </header>
+        
+        <!-- 메인 콘텐츠 -->
+        <main>
+            
+            <!-- 인사말 섹션 -->
+            
+            <section class="tci-intro-section">
+                <h2 class="tci-intro-title">인사말</h2>
+                <p class="tci-intro-text">안녕하세요, 환자 여러분! 따뜻한 봄을 맞이하며 건강한 소식을 전해드립니다. 이번 달 소식지에서는 새로운 건강검진 프로그램과 봄철 건강관리 팁을 소개해 드립니다.</p>
+            </section>
+            
+            
+            <!-- 기사 섹션 -->
+            <section class="tci-articles">
+                <h2 class="tci-articles-title">이번 달 소식</h2>
+                
+                
+                
+                <!-- 기사 카드 -->
+                <article class="tci-article-card">
+                    
+                    <div class="tci-article-content">
+                        <h3 class="tci-article-title">새로운 건강검진 프로그램 안내</h3>
+                        
+                        <p class="tci-article-excerpt">저희 병원에서는 2026년부터 새로운 종합 건강검진 프로그램을 시작합니다.최신 의료 장비와 전문 의료진이 여러분의 건강을 꼼꼼히 체크해 드립니다.기본 검진: 혈액검사, 소변검사, 흉부 X-ray정밀 검진: CT, MRI, 내시경 검사특화 검진: 암 표지자 검사, 유전자 검사</p>
+                        
+                    </div>
+                </article>
+                
+                <!-- 기사 카드 -->
+                <article class="tci-article-card">
+                    
+                    <div class="tci-article-content">
+                        <h3 class="tci-article-title">봄철 건강관리 팁</h3>
+                        
+                        <p class="tci-article-excerpt">봄철은 환절기로 면역력 관리가 중요한 시기입니다.1. 충분한 수분 섭취하루 2리터 이상의 물을 마시세요.2. 규칙적인 운동가벼운 산책이나 스트레칭으로 몸을 깨워주세요.3. 균형 잡힌 식단제철 채소와 과일을 충분히 섭취하세요.</p>
+                        
+                    </div>
+                </article>
+                
+                <!-- 기사 카드 -->
+                <article class="tci-article-card">
+                    
+                    <div class="tci-article-content">
+                        <h3 class="tci-article-title">진료 시간 변경 안내</h3>
+                        
+                        <p class="tci-article-excerpt">2026년 3월부터 진료 시간이 일부 변경됩니다.평일: 오전 9시 ~ 오후 6시토요일: 오전 9시 ~ 오후 1시일요일/공휴일: 휴진응급 진료가 필요하신 경우 응급실(24시간)을 이용해 주세요.</p>
+                        
+                    </div>
+                </article>
+                
+                
+            </section>
+            
+        </main>
+        
+        <!-- 병원 정보 -->
+        <section class="tci-hospital-info">
+            <h2 class="tci-info-title">병원 안내</h2>
+            
+            
+            <div class="tci-info-item">
+                <svg class="tci-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span class="tci-info-text">
+                    <a href="tel:02-1234-5678">02-1234-5678</a>
+                </span>
+            </div>
+            
+            
+            
+            <div class="tci-info-item">
+                <svg class="tci-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span class="tci-info-text">서울시 중구 을지로 123</span>
+            </div>
+            
+            
+            
+            <div class="tci-info-item">
+                <svg class="tci-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span class="tci-info-text">
+                    <a href="mailto:info@seoul-central.co.kr">info@seoul-central.co.kr</a>
+                </span>
+            </div>
+            
+        </section>
+        
+        <!-- 푸터 -->
+        <footer class="tci-newsletter-footer">
+            <p class="tci-footer-text">&copy; 2026 서울중앙병원. All rights reserved.</p>
+            <p class="tci-footer-text">Powered by SmartPublish</p>
+        </footer>
+    </div>
+</body>
+</html>
